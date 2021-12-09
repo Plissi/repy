@@ -14,7 +14,9 @@ class BankController extends Controller
      */
     public function index()
     {
-        //
+        return view('banks.index', [
+            'banks' => Bank::paginate(10)
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        //
+        return view('banks.add');
     }
 
     /**

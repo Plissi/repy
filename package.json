@@ -20,5 +20,8 @@
         "sass": "^1.32",
         "sass-loader": "^8.0",
         "tailwindcss": "^2.2"
+    },
+    "dependencies": {
+        "@themesberg/flowbite": "^1.2.0"
     }
 }

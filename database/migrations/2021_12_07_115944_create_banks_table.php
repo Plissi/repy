@@ -15,6 +15,11 @@ class CreateBanksTable extends Migration
     {
         Schema::create('banks', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->boolean('contentieux');
+            $table->boolean('paywallet');
+            $table->boolean('monetique');
+            $table->boolean('integration-flux');
             $table->timestamps();
         });
     }
