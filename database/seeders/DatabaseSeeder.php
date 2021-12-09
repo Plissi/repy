@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $user = new User();
+        $user->matricule = '1234';
         $user->name = 'admin';
         $user->email = 'admin@gmail.com';
         $user->password = bcrypt('password');
@@ -30,5 +31,9 @@ class DatabaseSeeder extends Seeder
         $bank -> contentieux = 1;
         $bank -> flux = 1;
         $bank ->save();
+
+        $this->call([
+            NormSeeder::class
+        ]);
     }
 }

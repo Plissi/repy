@@ -59,7 +59,9 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        //
+        return view('banks.edit', [
+            'bank' => $bank
+        ]);
     }
 
     /**

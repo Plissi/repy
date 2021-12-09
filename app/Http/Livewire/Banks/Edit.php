@@ -5,8 +5,9 @@ namespace App\Http\Livewire\Banks;
 use Livewire\Component;
 use App\Models\Bank;
 
-class Add extends Component
+class Edit extends Component
 {
+    public $bank;
     public $name='';
     public $monetique; 
     public $paywallet; 
@@ -20,12 +21,20 @@ class Add extends Component
         'contentieux' => 'required',
         'flux' => 'required',
     ];
+ 
+    public function mount() {
+        $this -> name = $this -> bank -> name;
+        $this -> monetique = $this -> bank -> monetique; 
+        $this -> paywallet = $this -> bank -> paywallet; 
+        $this -> contentieux = $this -> bank -> contentieux;
+        $this -> flux = $this -> bank['integration-flux'];
+    }
 
     public function submit()
     {
         $this->validate();
 
-        Bank::create([
+        $this -> bank -> update([
             'name' => $this -> name,
             'monetique' => $this -> monetique,
             'paywallet' => $this -> paywallet,
@@ -36,8 +45,11 @@ class Add extends Component
         return redirect(route('banks.index'));
     }
 
+
     public function render()
     {
-        return view('livewire.banks.add');
+        return view('livewire.banks.edit', [
+            'bank' => $this -> bank
+        ]);
     }
 }

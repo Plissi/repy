@@ -74,7 +74,7 @@ Route::middleware('auth') -> group(function(){
     Route::get('banks', [BankController::class, 'index'])
         -> name('banks.index');
     
-    Route::get('banks/edit/{id}', [BankController::class, 'edit'])
+    Route::get('banks/edit/{bank}', [BankController::class, 'edit'])
         -> name('banks.edit');
     
     Route::post('banks/edit/{id}', [BankController::class, 'update'])

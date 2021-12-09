@@ -17,7 +17,9 @@ class CreateNormsTable extends Migration
             $table->id();
             $table->string('tache');
             $table->time('heure');
-            $table->foreignId('bank_id')->constrained();
+            $table->foreignId('bank_id')
+            ->constrained()
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +31,10 @@ class CreateNormsTable extends Migration
      */
     public function down()
     {
+        Schema::table('norms', function (Blueprint $table) {
+            $table->dropForeign(['bank_id']);
+        });
+        
         Schema::dropIfExists('norms');
     }
 }
