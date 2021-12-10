@@ -34,5 +34,6 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('@themesberg/flowbite/plugin'),
+        require('@tailwindcss/aspect-ratio'),
     ],
 };

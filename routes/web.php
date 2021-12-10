@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\EodReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Passwords\Confirm;
@@ -59,6 +60,8 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
+//Users
+
 Route::middleware('auth')->group(function(){
     Route::get('users', Users::class)
         ->name('users.index');
@@ -70,19 +73,31 @@ Route::middleware('auth')->group(function(){
         ->name('users.store');
 });
 
+//Banks
+
 Route::middleware('auth') -> group(function(){
     Route::get('banks', [BankController::class, 'index'])
         -> name('banks.index');
     
     Route::get('banks/edit/{bank}', [BankController::class, 'edit'])
         -> name('banks.edit');
-    
-    Route::post('banks/edit/{id}', [BankController::class, 'update'])
-        -> name('banks.update');
 
     Route::get('banks/add', [BankController::class, 'create'])
         -> name('banks.create');
+});
 
-    Route::post('banks/add', [BankController::class, 'store'])
-        -> name('banks.store');
+//Reports
+
+Route::middleware('auth') -> group(function(){
+    Route::get('reports', [EodReportController::class, 'index'])
+        -> name('reports.index');
+
+    Route::get('reports/add', [EodReportController::class, 'create'])
+        -> name('reports.create');
+    
+    Route::get('reports/{eod_report}', [EodReportController::class, 'show'])
+        -> name('reports.show');
+    
+    Route::get('reports/edit/{eod_report}', [EodReportController::class, 'edit'])
+        -> name('reports.edit');
 });
