@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\eod_report;
 use App\Models\Bank;
+use App\Models\eod_report;
+use App\Models\syntheses_tfj;
 use Illuminate\Http\Request;
 
-class EodReportController extends Controller
+class SynthesesTfjController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,7 @@ class EodReportController extends Controller
      */
     public function index()
     {
-        return view('reports.index', [
-            'reports' => eod_report::join('banks', 'eod_reports.bank_id', '=', 'banks.id')
-            ->orderByDesc('date') 
-            ->select('eod_reports.id as id', 'eod_reports.date', 'eod_reports.bank_id', 'banks.name', ) 
-            ->paginate(24)
-        ]);
+        return view();
     }
 
     /**
@@ -28,9 +24,21 @@ class EodReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(eod_report $report)
     {
-        return view('reports.add');
+        $report['bank'] = Bank::find($report-> bank_id) -> name;
+        $synthesis = syntheses_tfj::where('eod_reports_id', $report->id)->first();
+        if ($synthesis -> count() == 0) {
+            return view('tfj.synthesis.add', [
+                'report' => $report
+            ]);
+        } else {
+            return view('tfj.synthesis.edit', [
+                'report' => $report,
+                'synthesis' => $synthesis
+            ]);
+        }
+        
     }
 
     /**
@@ -47,10 +55,10 @@ class EodReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\eod_report  $eod_report
+     * @param  \App\Models\syntheses_tfj  $syntheses_tfj
      * @return \Illuminate\Http\Response
      */
-    public function show(eod_report $eod_report)
+    public function show(syntheses_tfj $syntheses_tfj)
     {
         //
     }
@@ -58,24 +66,22 @@ class EodReportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\eod_report  $eod_report
+     * @param  \App\Models\syntheses_tfj  $syntheses_tfj
      * @return \Illuminate\Http\Response
      */
-    public function edit(eod_report $eod_report)
+    public function edit(syntheses_tfj $syntheses_tfj)
     {
-        return view('reports.edit', [
-            'report' => $eod_report
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\eod_report  $eod_report
+     * @param  \App\Models\syntheses_tfj  $syntheses_tfj
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, eod_report $eod_report)
+    public function update(Request $request, syntheses_tfj $syntheses_tfj)
     {
         //
     }
@@ -83,10 +89,10 @@ class EodReportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\eod_report  $eod_report
+     * @param  \App\Models\syntheses_tfj  $syntheses_tfj
      * @return \Illuminate\Http\Response
      */
-    public function destroy(eod_report $eod_report)
+    public function destroy(syntheses_tfj $syntheses_tfj)
     {
         //
     }

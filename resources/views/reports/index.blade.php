@@ -39,15 +39,14 @@
                                 <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                                     @foreach ($reports as $report)
                                         <div class="max-w-sm p-6 text-center bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$report -> date}}</h5>
-                                            <div class="flex justify-center">
-                                                <a href="#" class="flex justify-center w-1/2 px-4 py-2 font-medium text-white transition duration-150 ease-in-out bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:ring-yellow active:bg-yellow-700">
-                                                    Consulter
-                                                    <svg class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ date('d-m-Y', strtotime($report -> date)) }}</h5>
+                                            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 uppercase dark:text-white">{{$report -> name}}</h5>
+                                            <div class="flex justify-center gap-2">
+                                                <a href="#" class="flex justify-center flex-initial w-1/4 px-4 py-2 font-medium text-white transition duration-150 ease-in-out bg-yellow-600 border border-transparent rounded-md md:w-1/3 hover:bg-yellow-500 lg:w-1/2 focus:outline-none focus:border-yellow-700 focus:ring-yellow active:bg-yellow-700">
+                                                    <img src="{{ asset('images/eye-svgrepo-com.svg') }}" alt="open-image">
                                                 </a>
-                                                <a href="{{ route('reports.edit', ['eod_report'=> $report]) }}" class="flex justify-center w-1/2 px-4 py-2 font-medium text-white transition duration-150 ease-in-out bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:ring-yellow active:bg-yellow-700">
-                                                    Modifier
-                                                    <svg class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                <a href="{{ route('reports.edit', ['eod_report'=> $report]) }}" class="flex justify-center flex-initial w-1/4 px-4 py-2 font-medium text-white transition duration-150 ease-in-out bg-yellow-600 border border-transparent rounded-md md:w-1/3 lg:w-1/2 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:ring-yellow active:bg-yellow-700">
+                                                    <img src="{{ asset('images/edit-svgrepo-com.svg') }}" alt="edit-image">
                                                 </a>
                                             </div>
                                         </div>
