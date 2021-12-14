@@ -28,7 +28,7 @@
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input wire:model.lazy="matricule" id="matricule" name="matricule" type="text" required autofocus class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-yellow focus:border-yellow-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('matricule') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                        <input wire:model.lazy="matricule" id="matricule" name="matricule" type="text" required autofocus class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-yellow-600 focus:border-yellow-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('matricule') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
                     </div>
 
                     @error('matricule')
@@ -42,7 +42,7 @@
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input wire:model.lazy="password" id="password" type="password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-yellow focus:border-yellow-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                        <input wire:model.lazy="password" id="password" type="password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-yellow-600 focus:border-yellow-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
                     </div>
 
                     @error('password')
@@ -52,7 +52,7 @@
 
                 <div class="flex items-center justify-between mt-6">
                     <div class="flex items-center">
-                        <input wire:model.lazy="remember" id="remember" type="checkbox" class="w-4 h-4 text-yellow-600 transition duration-150 ease-in-out form-checkbox" />
+                        <input wire:model.lazy="remember" id="remember" type="checkbox" class="w-4 h-4 text-yellow-600 transition duration-150 ease-in-out form-checkbox focus:border-yellow-700 focus:ring-yellow-600" />
                         <label for="remember" class="block ml-2 text-sm leading-5 text-gray-900">
                             Rester connecté 
                         </label>
@@ -67,7 +67,7 @@
 
                 <div class="mt-6">
                     <span class="block w-full rounded-md shadow-sm">
-                        <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:ring-yellow active:bg-yellow-700">
+                        <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:ring-yellow-600 active:bg-yellow-700">
                             Se connecter
                         </button>
                     </span>
