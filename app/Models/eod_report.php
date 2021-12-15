@@ -16,6 +16,21 @@ class eod_report extends Model
         'date',
         'bank_id',
     ];
+    
+    public function integrations()
+    {
+        return $this -> hasMany(Integration::class);
+    }
+    
+    public function synthesis()
+    {
+        return $this -> hasOne(syntheses_tfj::class);
+    }
+
+    public function bank()
+    {
+        return $this -> belongsTo(Bank::class);
+    }
 
     use HasFactory;
 }

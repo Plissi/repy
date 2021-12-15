@@ -19,4 +19,9 @@ class Norm extends Model
         'heure',
         'bank_id',
     ];
+
+    public function bank()
+    {
+        return $this -> belongsTo(Bank::class);
+    }
 }

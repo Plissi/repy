@@ -22,5 +22,10 @@ class syntheses_tfj extends Model
         'eod_reports_id'
     ];
 
+    public function report()
+    {
+        return $this -> belongsTo(eod_report::class);
+    }
+
     use HasFactory;
 }

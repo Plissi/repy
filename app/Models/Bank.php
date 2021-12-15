@@ -20,5 +20,15 @@ class Bank extends Model
         'integration-flux'
     ];
 
+    public function reports()
+    {
+        return $this -> hasMany(eod_report::class);
+    }
+    
+    public function norm()
+    {
+        return $this -> hasOne(Norm::class);
+    }
+
     use HasFactory;
 }
