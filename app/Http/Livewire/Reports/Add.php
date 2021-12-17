@@ -20,7 +20,7 @@ class Add extends Component
     protected function rules()
     {
         return [
-            'date' => ['required', 'date', 'unique:eod_reports,date,NULL,id,bank_id,'.$this->bank],
+            'date' => ['required', 'before_or_equal:today', 'date', 'unique:eod_reports,date,NULL,id,bank_id,'.$this->bank],
             'bank' => ['required'],
         ];
     }

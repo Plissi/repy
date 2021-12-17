@@ -29,6 +29,11 @@ class Bank extends Model
     {
         return $this -> hasOne(Norm::class);
     }
+    
+    public function flux()
+    {
+        return $this -> hasMany(Flux::class);
+    }
 
     use HasFactory;
 }

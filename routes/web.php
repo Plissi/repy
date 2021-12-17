@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\EodReportController;
+use App\Http\Controllers\IntegrationController;
 use App\Http\Controllers\SynthesesTfjController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Auth\Login;
@@ -108,4 +109,15 @@ Route::middleware('auth') -> group(function(){
 Route::middleware('auth') -> group(function(){
     Route::get('synthesis/{report}', [SynthesesTfjController::class, 'create'])
         -> name('tfj.syntesis.create');
+});
+
+// Integration
+
+Route::middleware('auth') -> group(function(){
+    Route::get('integrations/{report}', [IntegrationController::class, 'index'])
+        ->name('integrations.index');
+    Route::get('integrations/add', [IntegrationController::class, 'create'])
+        ->name('integrations.create');
+    Route::get('integrations/edit/{integration}', [IntegrationController::class, 'edit'])
+        ->name('integrations.edit');
 });
