@@ -22,6 +22,11 @@ class eod_report extends Model
         return $this -> hasMany(Integration::class, 'eod_reports_id');
     }
     
+    public function pre_tfj()
+    {
+        return $this -> hasMany(PreTFJ::class, 'eod_reports_id');
+    }
+    
     public function synthesis()
     {
         return $this -> hasOne(syntheses_tfj::class, 'eod_reports_id');

@@ -28,7 +28,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
 
-    <body class="min-h-screen">
+    <body class="min-h-screen" style="background-image:linear-gradient(rgba(94, 45, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://www.bicec.com/images/banniere/bg-banniere.jpg')">
         <x-nav-bar/> 
         @yield('body')
 

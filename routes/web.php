@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\EodReportController;
 use App\Http\Controllers\IntegrationController;
+use App\Http\Controllers\PreTFJController;
 use App\Http\Controllers\SynthesesTfjController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Auth\Login;
@@ -62,46 +63,52 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-//Users
-
-Route::middleware('auth')->group(function(){
-    Route::get('users', Users::class)
-        ->name('users.index');
-
-    Route::get('user/edit/{id}', Edit::class)
-        ->name('users.edit');
-
-    Route::post('user/edit/{id}', [UserController::class, 'store'])
-        ->name('users.store');
-});
-
-//Banks
-
 Route::middleware('auth') -> group(function(){
-    Route::get('banks', [BankController::class, 'index'])
-        -> name('banks.index');
+    //Users
+    Route::prefix('users') -> name('users.') -> group(function(){
+        Route::get('', Users::class)->name('index');
+
+        Route::get('edit/{id}', Edit::class)->name('edit');
+
+        Route::post('edit/{id}', [UserController::class, 'store'])->name('store');
+    });
+
+    //Banks
+    Route::prefix('banks') -> name('banks.') -> group(function(){
+        Route::get('', [BankController::class, 'index']) -> name('index');   
+        
+        Route::get('edit/{bank}', [BankController::class, 'edit'])-> name('edit');
+        
+        Route::get('add', [BankController::class, 'create'])-> name('create');
+    });
+
+    //Reports
+    Route::prefix('reports') -> name('reports.') -> group(function(){
+        Route::get('', [EodReportController::class, 'index'])-> name('index');
     
-    Route::get('banks/edit/{bank}', [BankController::class, 'edit'])
-        -> name('banks.edit');
+        Route::get('add', [EodReportController::class, 'create']) -> name('create');
+        
+        Route::get('{eod_report}', [EodReportController::class, 'show'])-> name('show');
+        
+        Route::get('edit/{eod_report}', [EodReportController::class, 'edit']) -> name('edit');
+    });
 
-    Route::get('banks/add', [BankController::class, 'create'])
-        -> name('banks.create');
-});
+    //Integration
+    Route::prefix('integrations') -> name('integrations.') -> group(function(){
+        Route::get('{report}', [IntegrationController::class, 'index']) -> name('index');
 
-//Reports
+        Route::get('add', [IntegrationController::class, 'create']) -> name('create');
 
-Route::middleware('auth') -> group(function(){
-    Route::get('reports', [EodReportController::class, 'index'])
-        -> name('reports.index');
+        Route::get('edit/{integration}', [IntegrationController::class, 'edit']) -> name('edit');
+    });
 
-    Route::get('reports/add', [EodReportController::class, 'create'])
-        -> name('reports.create');
-    
-    Route::get('reports/{eod_report}', [EodReportController::class, 'show'])
-        -> name('reports.show');
-    
-    Route::get('reports/edit/{eod_report}', [EodReportController::class, 'edit'])
-        -> name('reports.edit');
+    Route::prefix('pre-tfj') -> name('pre-tfj.') -> group(function(){
+        Route::get('{report}', [PreTFJController::class, 'index']) -> name('index');
+
+        Route::get('add', [PreTFJController::class, 'create']) -> name('create');
+
+        Route::get('edit/{task}', [PreTFJController::class, 'edit']) -> name('edit');
+    });
 });
 
 //EOD Synthesis
@@ -109,15 +116,4 @@ Route::middleware('auth') -> group(function(){
 Route::middleware('auth') -> group(function(){
     Route::get('synthesis/{report}', [SynthesesTfjController::class, 'create'])
         -> name('tfj.syntesis.create');
-});
-
-// Integration
-
-Route::middleware('auth') -> group(function(){
-    Route::get('integrations/{report}', [IntegrationController::class, 'index'])
-        ->name('integrations.index');
-    Route::get('integrations/add', [IntegrationController::class, 'create'])
-        ->name('integrations.create');
-    Route::get('integrations/edit/{integration}', [IntegrationController::class, 'edit'])
-        ->name('integrations.edit');
 });
