@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\EodReportController;
 use App\Http\Controllers\IntegrationController;
+use App\Http\Controllers\PostTFJController;
 use App\Http\Controllers\PreTFJController;
 use App\Http\Controllers\SynthesesTfjController;
 use App\Http\Controllers\UserController;
@@ -108,6 +109,14 @@ Route::middleware('auth') -> group(function(){
         Route::get('add', [PreTFJController::class, 'create']) -> name('create');
 
         Route::get('edit/{task}', [PreTFJController::class, 'edit']) -> name('edit');
+    });
+
+    Route::prefix('post-tfj') -> name('post-tfj.') -> group(function(){
+        Route::get('{report}', [PostTFJController::class, 'index']) -> name('index');
+
+        Route::get('add', [PostTFJController::class, 'create']) -> name('create');
+
+        Route::get('edit/{task}', [PostTFJController::class, 'edit']) -> name('edit');
     });
 });
 

@@ -41,7 +41,7 @@
                                     </a>
                                 </span>
                                 <span class="flex justify-center w-full px-4 py-2 mx-auto text-center md:w-2/4">
-                                    <a href="#" class="flex justify-center w-full px-4 py-2 font-medium text-white transition duration-150 ease-in-out bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:ring-yellow active:bg-yellow-700">
+                                    <a href="{{ route('post-tfj.index', ['report' => $report]) }}" class="flex justify-center w-full px-4 py-2 font-medium text-white transition duration-150 ease-in-out bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:ring-yellow active:bg-yellow-700">
                                         Traitements après TFJ
                                     </a>
                                 </span>
