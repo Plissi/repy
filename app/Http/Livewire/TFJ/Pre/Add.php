@@ -77,77 +77,63 @@ class Add extends Component
     {
         $this -> validate();
 
-        PreTFJ::create([
-            'tache' => 'Contentieux',
-            'debut' => $this -> ctx1,
-            'fin' => $this -> ctx2,
-            'observation' => $this -> ctx3,
-            'eod_reports_id' => $this -> report -> id
-        ]);
-
-        PreTFJ::create([
-            'tache' => 'Solde Monétique',
-            'debut' => $this -> mon1,
-            'fin' => $this -> mon2,
-            'observation' => $this -> mon3,
-            'eod_reports_id' => $this -> report -> id
-        ]);
-
-        PreTFJ::create([
-            'tache' => 'Génération Clients IWOMI',
-            'debut' => $this -> clts1,
-            'fin' => $this -> clts2,
-            'observation' => $this -> clts3,
-            'eod_reports_id' => $this -> report -> id
-        ]);
-
-        PreTFJ::create([
-            'tache' => 'Génération Solde IWOMI',
-            'debut' => $this -> sld1,
-            'fin' => $this -> sld2,
-            'observation' => $this -> sld3,
-            'eod_reports_id' => $this -> report -> id
-        ]);
-
-        PreTFJ::create([
-            'tache' => 'TFJ Paywallet',
-            'debut' => $this -> paywallet1,
-            'fin' => $this -> paywallet2,
-            'observation' => $this -> paywallet3,
-            'eod_reports_id' => $this -> report -> id
-        ]);
-
-        PreTFJ::create([
-            'tache' => 'Fermeture Automatique des Caisses',
-            'debut' => $this -> caisses1,
-            'fin' => $this -> caisses2,
-            'observation' => $this -> caisses3,
-            'eod_reports_id' => $this -> report -> id
-        ]);
-
-        PreTFJ::create([
-            'tache' => 'Fermeture du Site',
-            'debut' => $this -> site1,
-            'fin' => $this -> site2,
-            'observation' => $this -> site3,
-            'eod_reports_id' => $this -> report -> id
-        ]);
-
-        PreTFJ::create([
-            'tache' => 'Sauvegarde RMAN',
-            'debut' => $this -> sauve1,
-            'fin' => $this -> sauve2,
-            'observation' => $this -> sauve3,
-            'eod_reports_id' => $this -> report -> id
-        ]);
-
-        PreTFJ::create([
-            'tache' => 'Sauvegarde Logique',
-            'debut' => $this -> sauvel1,
-            'fin' => $this -> sauvel2,
-            'observation' => $this -> sauvel3,
-            'eod_reports_id' => $this -> report -> id
-        ]);
+        PreTFJ::upsert([
+            [
+                'tache' => 'Contentieux',
+                'debut' => $this -> ctx1,
+                'fin' => $this -> ctx2,
+                'observation' => $this -> ctx3,
+                'eod_reports_id' => $this -> report -> id
+            ],[
+                'tache' => 'Solde Monétique',
+                'debut' => $this -> mon1,
+                'fin' => $this -> mon2,
+                'observation' => $this -> mon3,
+                'eod_reports_id' => $this -> report -> id
+            ],[
+                'tache' => 'Génération Clients IWOMI',
+                'debut' => $this -> clts1,
+                'fin' => $this -> clts2,
+                'observation' => $this -> clts3,
+                'eod_reports_id' => $this -> report -> id
+            ],[
+                'tache' => 'Génération Solde IWOMI',
+                'debut' => $this -> sld1,
+                'fin' => $this -> sld2,
+                'observation' => $this -> sld3,
+                'eod_reports_id' => $this -> report -> id
+            ],[
+                'tache' => 'TFJ Paywallet',
+                'debut' => $this -> paywallet1,
+                'fin' => $this -> paywallet2,
+                'observation' => $this -> paywallet3,
+                'eod_reports_id' => $this -> report -> id
+            ],[
+                'tache' => 'Fermeture Automatique des Caisses',
+                'debut' => $this -> caisses1,
+                'fin' => $this -> caisses2,
+                'observation' => $this -> caisses3,
+                'eod_reports_id' => $this -> report -> id
+            ],[
+                'tache' => 'Fermeture du Site',
+                'debut' => $this -> site1,
+                'fin' => $this -> site2,
+                'observation' => $this -> site3,
+                'eod_reports_id' => $this -> report -> id
+            ],[
+                'tache' => 'Sauvegarde RMAN',
+                'debut' => $this -> sauve1,
+                'fin' => $this -> sauve2,
+                'observation' => $this -> sauve3,
+                'eod_reports_id' => $this -> report -> id
+            ],[
+                'tache' => 'Sauvegarde Logique',
+                'debut' => $this -> sauvel1,
+                'fin' => $this -> sauvel2,
+                'observation' => $this -> sauvel3,
+                'eod_reports_id' => $this -> report -> id
+            ]
+        ], ['id']);
 
         return redirect(route('reports.edit', [
             'eod_report' => $this -> report
