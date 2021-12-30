@@ -16,6 +16,7 @@ class CreateEodReportsTable extends Migration
         Schema::create('eod_reports', function (Blueprint $table) {
             $table->id();
             $table->date('date');
+            $table->string('file')->nullable();
             $table->foreignId('bank_id')
             ->constrained()
             ->onDelete('cascade');

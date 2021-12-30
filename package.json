@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@tailwindcss/aspect-ratio": "^0.3.0",
-        "@themesberg/flowbite": "^1.2.0"
+        "@themesberg/flowbite": "^1.2.0",
+        "puppeteer": "^13.0.1"
     }
 }

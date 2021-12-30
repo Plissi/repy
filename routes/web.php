@@ -89,7 +89,7 @@ Route::middleware('auth') -> group(function(){
     
         Route::get('add', [EodReportController::class, 'create']) -> name('create');
         
-        Route::get('{eod_report}', [EodReportController::class, 'show'])-> name('show');
+        Route::get('show/{eod_report}', [EodReportController::class, 'show'])-> name('show');
         
         Route::get('edit/{eod_report}', [EodReportController::class, 'edit']) -> name('edit');
     });

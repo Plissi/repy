@@ -52,7 +52,9 @@ class EodReportController extends Controller
      */
     public function show(eod_report $eod_report)
     {
-        //
+        return view('reports.show', [
+            'report' => $eod_report
+        ]);
     }
 
     /**
